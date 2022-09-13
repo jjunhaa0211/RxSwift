@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E98282E28D08FD4000FE61C /* Observable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Observable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0EB59EAB28D07B8C002AC971 /* RxSwiftPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EB59EAE28D07B8C002AC971 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EB59EB028D07B8C002AC971 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 				0EB59EAE28D07B8C002AC971 /* AppDelegate.swift */,
 				0EB59EB028D07B8C002AC971 /* SceneDelegate.swift */,
 				0EB59EB228D07B8C002AC971 /* ViewController.swift */,
+				0E98282E28D08FD4000FE61C /* Observable.playground */,
 				0EB59EB428D07B8C002AC971 /* Main.storyboard */,
 				0EB59EB728D07B8D002AC971 /* Assets.xcassets */,
 				0EB59EB928D07B8D002AC971 /* LaunchScreen.storyboard */,
@@ -88,7 +90,6 @@
 				900048A0B8F8C0A031F03BFA /* Pods-RxSwiftPractice.debug.xcconfig */,
 				132205475CEE40DDEB49E69C /* Pods-RxSwiftPractice.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
