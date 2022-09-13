@@ -72,6 +72,7 @@ Observable.range(start: 1, count: 9)
     })
 
 print("-----dispose-----")
+//메모리 누수를 막음
 Observable.of(1, 2, 3)
     .subscribe(onNext: {
         print($0)
