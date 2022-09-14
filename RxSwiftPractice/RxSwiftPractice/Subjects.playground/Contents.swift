@@ -62,3 +62,30 @@ behaviorSubject.subscribe {
 
 let value = try? behaviorSubject.value()
 print(value)
+
+
+print("------ReplaySubject------")
+let replaySubject = ReplaySubject<String>.create(bufferSize: 3)
+
+replaySubject.onNext("1. 여러분")
+replaySubject.onNext("2. 힘내세요")
+replaySubject.onNext("3. 어렵지만")
+
+replaySubject.subscribe {
+    print("첫번째구독:", $0.element ?? $0)
+}
+.disposed(by: disposeBag)
+
+replaySubject.subscribe {
+    print("두번째구독:", $0.element ?? $0)
+}
+.disposed(by: disposeBag)
+
+replaySubject.onNext("4. 할수있어요.")
+replaySubject.onError(SubjectError.error1)
+replaySubject.dispose()
+
+replaySubject.subscribe {
+    print("세번째구독:",$0.element ?? $0)
+}
+.disposed(by: disposeBag)
