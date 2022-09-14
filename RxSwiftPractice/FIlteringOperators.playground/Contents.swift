@@ -76,3 +76,23 @@ let 문여는시간 = PublishSubject<String>()
 
 문여는시간.onNext("땡!")
 손님.onNext("😢")
+
+print("------take------")
+//skip의 반대 개념
+Observable.of("🥇","🥈","🥉","🤓","😎")
+    .take(3)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+print("------takeWhile------")
+Observable.of("🥇","🥈","🥉","🤓","😎")
+    .take(while: {
+        $0 != "🥉"
+    })
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
