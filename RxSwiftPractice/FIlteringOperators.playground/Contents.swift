@@ -96,3 +96,39 @@ Observable.of("🥇","🥈","🥉","🤓","😎")
     })
     .disposed(by: disposeBag)
 
+print("-------enumeratered------")
+Observable.of("🥇","🥈","🥉","🤓","😎")
+    .enumerated()
+    .takeWhile {
+        $0.index < 3
+    }
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag )
+
+print("-------takeUntil------")
+let 수강신청 = PublishSubject<String>()
+let 신청마감 = PublishSubject<String>()
+
+수강신청
+    .take(until: 신청마감)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+수강신청.onNext("🙋‍♀️")
+수강신청.onNext("🙋")
+
+신청마감.onNext("끝")
+수강신청.onNext("🫡")
+
+print("-------distincrUntilChanged------")
+//중복 제거
+Observable.of("저는","저는","앵무세","앵무세","앵무세","앵무세","앵무세","입니다","입니다","입니다","입니다","저는","앵무세","일까요?","일까요?")
+    .distinctUntilChanged()
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
