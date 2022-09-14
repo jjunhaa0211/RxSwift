@@ -37,3 +37,28 @@ pubilshSubject
     .disposed(by: disposeBag)
 
 pubilshSubject.onNext("6. 찍을까요?")
+
+print("------behaviorSubject------")
+
+enum SubjectError: Error {
+    case error1
+}
+
+let behaviorSubject = BehaviorSubject<String>(value: "0. 초기값")
+
+behaviorSubject.onNext("1. 첫번째값")
+
+behaviorSubject.subscribe {
+    print("첫번째 구독:", $0.element ?? $0)
+}
+.disposed(by: disposeBag)
+
+//behaviorSubject.onError(SubjectError.error1)
+
+behaviorSubject.subscribe {
+    print("두번째구독:",$0.element ?? $0)
+}
+.disposed(by: disposeBag)
+
+let value = try? behaviorSubject.value()
+print(value)
