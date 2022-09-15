@@ -79,3 +79,88 @@ let 전국체전 = PublishSubject<선수>()
 전국체전.onNext(제주)
 서울.점수.onNext(10)
 제주.점수.onNext(8)
+
+print("------materialize and dematerialize------")
+enum 반칙: Error {
+    case 부정출발
+}
+
+struct 달리기선수: 선수 {
+    var 점수: BehaviorSubject<Int>
+}
+
+let 김토끼 = 달리기선수(점수: BehaviorSubject(value: 0))
+let 박치타 = 달리기선수(점수: BehaviorSubject(value: 1))
+
+let 달리기 = BehaviorSubject(value: 김토끼)
+
+달리기
+    .flatMapLatest { 선수 in
+        선수.점수.materialize()
+    }
+    .filter {
+        guard let error = $0.error else {
+            return true
+        }
+        print(error)
+        return false
+    }
+    .dematerialize()
+    .subscribe {
+        print($0)
+    }
+    .disposed(by: disposeBag)
+
+김토끼.점수.onNext(1)
+김토끼.점수.onError(반칙.부정출발)
+김토끼.점수.onNext(2)
+
+달리기.onNext(박치타)
+
+
+print("------전화번호 11자리-------")
+let input = PublishSubject<Int?>()
+
+let list: [Int] = [1]
+
+input
+    .flatMap {
+        $0 == nil
+        ? Observable.empty()
+        :Observable.just($0)
+    }
+    .map { $0! }
+    .skip(while: { $0 != 0 } )
+    .take(11)
+    .toArray()
+    .asObservable()
+    .map {
+        $0.map { "\($0)" }
+    }
+    .map { number in
+        var numberList = number
+        numberList.insert("-", at: 3)
+        numberList.insert("-", at: 8)
+        let number = numberList.reduce(" ", +)
+        return number
+    }
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
+
+input.onNext(10)
+input.onNext(0)
+input.onNext(nil)
+input.onNext(1)
+input.onNext(0)
+input.onNext(4)
+input.onNext(3)
+input.onNext(nil)
+input.onNext(1)
+input.onNext(8)
+input.onNext(9)
+input.onNext(4)
+input.onNext(9)
+input.onNext(1)
+
