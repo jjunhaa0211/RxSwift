@@ -70,8 +70,8 @@ Observable.From([1, 2, 3, 4, 5])
 
 ```swift
 Observable<Int>.just(1)
-		.subscribe(onNext: {
-			print($0)
+      .subscribe(onNext: {
+       print($0)
 })
 ```
 
@@ -83,8 +83,8 @@ Observable<Int>.just(1)
 
 ```swift
 Observable.of(1, 2, 3)
-		.subscribe {
-				print($0)
+    .subscribe {
+     print($0)
 }
 
 //next(1)
@@ -97,10 +97,10 @@ Observable.of(1, 2, 3)
 
 ```swift
 Observable.of(1, 2, 3)
-		.subscribe {
-			if let element = $0.element {
-				print(element)
-		}
+    .subscribe {
+	if let element = $0.element {
+       	    print(element)
+	}
 }
 ```
 
@@ -142,13 +142,13 @@ Observable<Void>.empty()
 
 ```swift
 Observable.never()
-		.subscribe {
-		onNext: {
-				print($0)
+   .subscribe {
+	onNext: {
+       	   print($0)
 	},
 	onComplect: {
-				print("Completed")
-	}
+      	   print("Completed")
+      }
 }
 ```
 
@@ -156,13 +156,13 @@ Observable.never()
 
 ```swift
 Observable<Void>.never()
-		.subscribe {
-		onNext: {
-				print($0)
+   .subscribe {
+	onNext: {
+    	   print($0)
 	},
 	onComplect: {
-				print("Completed")
-	}
+	   print("Completed")
+     }
 }
 ```
 
@@ -172,13 +172,13 @@ Observable<Void>.never()
 
 ```swift
 Observable<Void>.never()
-		.debug("never")
-		.subscribe {
-		onNext: {
-				print($0)
+   .debug("never")
+   .subscribe {
+	onNext: {
+	   print($0)
 	},
 	onComplect: {
-				print("Completed")
+	   print("Completed")
 	}
 }
 
@@ -191,8 +191,8 @@ Observable<Void>.never()
 
 ```swift
 Observable.range(start: 1, count: 9)
-		.subscribe(onNext: {
-				print("2 * \($0) = \(2*$0)
+   .subscribe(onNext: {
+	   print("2 * \($0) = \(2*$0)
 	})
 ```
 
@@ -206,8 +206,8 @@ Observable.range(start: 1, count: 9)
 
 ```swift
 Observable.of(1, 2, 3)
-		.subscribe {
-				print($0)
+   .subscribe {
+    print($0)
 }
 .dispose()
 
@@ -225,8 +225,8 @@ Observable.of(1, 2, 3)
 var disposeBag = DisposeBag()
 
 Observable.of(1, 2, 3)
-		.subscribe {
-				print($0)
+   .subscribe {
+    print($0)
 }
 .disposed(by: disposeBag)
 
@@ -244,13 +244,13 @@ Observable.of(1, 2, 3)
 
 ```swift
 Observable.create { observer -> Disposable in
-		observer.onNext(1) //observer.on(.next(1)) 동일 하다
-		observer.onCompleted()
-		observer.on(.next(2))
-		return Disposables.create()
+   observer.onNext(1) //observer.on(.next(1)) 동일 하다
+   observer.onCompleted()
+   observer.on(.next(2))
+   return Disposables.create()
 }
 .subscribe {
-			print($0)
+   print($0)
 }
 .disposed(by: disposeBag)
 ```
