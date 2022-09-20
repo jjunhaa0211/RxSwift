@@ -37,7 +37,7 @@ class CountViewController: UIViewController {
       .disposed(by: disposeBag)
     
     DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
-      UIApplication.shared.keyWindow?.rootViewController = nil
+      UIApplication.shared.keyWindow?.rootViewController = TextViewController()
     }
   }
 }
