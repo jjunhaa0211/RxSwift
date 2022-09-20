@@ -132,3 +132,5 @@ Observable.of("저는","저는","앵무세","앵무세","앵무세","앵무세",
         print($0)
     })
     .disposed(by: disposeBag)
+
+
